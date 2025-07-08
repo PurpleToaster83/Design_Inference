@@ -702,28 +702,28 @@ experimentApp.controller('ExperimentController',
       },
       {
         image: "stimuli/segments/tutorial3.gif",
-        text: `The player opens <strong>box 1</strong> and finds that there is no key inside,
-              then takes several steps to the right. How does this change your judgments?
-              <br><br>
-              Note that the agent knows that the puzzle is solvable which implies that there must be a red and a blue key present in this maze.
-              `,
+        text: `The player investigates a third bottle. What do you think the contents of the bottle are and how certain are you?`,
         tutorial: true,
         show_questions: true,
         question_types: ["goals", "beliefs"],
-        statements: ["The player believes that there might be a blue key in box 3.",
-                     "The player believes that there must be a blue key in box 2."],
+        statements: ["The player believes that this bottle contains a liquid.",
+                     "The player believes that there must be a potion in this bottle.",
+                     "The player believes that there must be a poison in this bottle."],
         delay: 1500
       },
       {
-        image: "stimuli/segments/demo_5.gif",
-        text: `As you might have guessed, the player was trying to reach the
-              triangle gem <img class="caption-image" src="images/gem_triangle.png">
-              by using a <span class="key-blue">blue key</span> in box 2.`,
+        image: "stimuli/segments/tutorial4.gif",
+        text: `The player investigates the last bottle. What do you think the contents of the bottle are and how certain are you?`,
         tutorial: true,
-        show_questions: false,
+        show_questions: true,
+        question_types: ["goals", "beliefs"],
+        statements: ["The player believes that this bottle contains a liquid.",
+                     "The player believes that there must be a potion in this bottle.",
+                     "The player believes that there must be a poison in this bottle."],
+        delay: 2000
       },
       {
-        text: `You've now finished the practice round!`
+        text: `You've now finished the practice round and the player can fight the monster using the potions and poisons you've collected!`
       },
       {
         text: `<strong>Comprehension Questions</strong> <br>
@@ -735,87 +735,83 @@ experimentApp.controller('ExperimentController',
               `
       },
       {
-        text: `<strong>Question 1/5:</strong> How many gems is the player trying to collect?`,
-        options: ["Exactly 1 gem.",
-                  "1 or 2 gems.",
-                  "All of the gems."],
-        answer: 0,
-        exam: true
-      },
-      {
-        text: `<strong>Question 1/5:</strong> How many gems is the player trying to collect?`,
-        options: ["Exactly 1 gem.",
-                  "1 or 2 gems.",
-                  "All of the gems."],
-        answer: 0,
-        feedback: true
-      },
-      {
-        text: `<strong>Question 2/5:</strong> What is your task in this game?`,
-        options: ["Answer questions about the player's goals and current beliefs.",
-                  "Control the player on the map and collect the gems.",
-                  "Guess the player's next actions."],
-        answer: 0,
-        exam: true
-      },
-      {
-        text: `<strong>Question 2/5:</strong> What is your task in this game?`,
-        options: ["Answer questions about the player's goals and current beliefs.",
-                  "Control the player on the map and collect the gems.",
-                  "Guess the player's next actions."],
-        answer: 0,
-        feedback: true
-      },
-      {
-        text: `<strong>Question 3/5:</strong> Which of the following is true?`,
-        options: ["The player has <strong> no knowledge </strong> about the contents of each box.",
-                  "The player <strong> knows perfectly </strong> what's inside each box.",
-                  "The player <strong> might know exactly </strong> what's in each box, but <strong> might also be unsure. </strong>"],
-        answer: 2,
-        exam: true
-      },
-      {
-        text: `<strong>Question 3/5:</strong> Which of the following is true?`,
-        options: ["The player has <strong> no knowledge </strong> about the contents of each box.",
-                  "The player <strong> knows perfectly </strong> what's inside each box.",
-                  "The player <strong> might know exactly </strong> what's in each box, but <strong> might also be unsure. </strong>"],
-        answer: 2,
-        feedback: true
-      },
-      {
-        text: `<strong>Question 4/5:</strong> You think the player needs a red key and you \
-              see the player walking towards box 1 and box 2. Which statement is the most plausible?`,
-        options: ["The player believes there <strong> must be </strong> a red key in box 1.",
-                  "The player believes there <strong> must be </strong> a red key in box 2.",
-                  "The player believes there <strong> might be </strong> a red key in box 1 or box 2."],
-        answer: 2,
-        exam: true
-      },
-      {
-        text: `<strong>Question 4/5:</strong> You think the player needs a red key and you \
-              see the player walking towards box 1 and box 2. Which statement is the most plausible?`,
-        options: ["The player believes there <strong> must be </strong> a red key in box 1.",
-                  "The player believes there <strong> must be </strong> a red key in box 2.",
-                  "The player believes there <strong> might be </strong> a red key in box 1 or box 2."],
-        answer: 2,
-        feedback: true
-      },
-      {
-        text: `<strong>Question 5/5:</strong> You're watching the player and <strong>two</strong> of the gems seem
-              likely to be the player's goal, but you're not sure which. What should you do?`,
-        options: ["Guess <strong>one</strong> of the two likely gems, and hope for the best.",
-                  "Guess <strong>both</strong> likely gems, because you're not sure.",
-                  "Guess <strong>all</strong> of the gems, because who knows?"],
+        text: `<strong>Question 1/5:</strong> What is the player investigating?`,
+        options: ["The map",
+                  "The bottles",
+                  "The monster"],
         answer: 1,
         exam: true
       },
       {
-        text: `<strong>Question 5/5:</strong> You're watching the player and <strong>two</strong> of the gems seem
-              likely to be the player's goal, but you're not sure which. What should you do?`,
-        options: ["Guess <strong>one</strong> of the two likely gems, and hope for the best.",
-                  "Guess <strong>both</strong> likely gems, because you're not sure.",
-                  "Guess <strong>all</strong> of the gems, because who knows?"],
+        text: `<strong>Question 1/5:</strong>  What is the player investigating?`,
+        options: ["The map",
+                  "The bottles",
+                  "The monster"],
         answer: 1,
+        feedback: true
+      },
+      {
+        text: `<strong>Question 2/5:</strong> What is your task in this game?`,
+        options: ["Run away from the monster",
+                  "Explore the map",
+                  "Guess the identity of the liquid in each bottle"],
+        answer: 2,
+        exam: true
+      },
+      {
+        text: `<strong>Question 2/5:</strong> What is your task in this game?`,
+        options: ["Run away from the monster",
+                  "Explore the map",
+                  "Guess the identity of the liquid in each bottle"],
+        answer: 2,
+        feedback: true
+      },
+      {
+        text: `<strong>Question 3/5:</strong> Which of the following is true?`,
+        options: ["The player has <strong> no definite knowledge </strong> about the contents of each bottle.",
+                  "The player <strong> knows perfectly </strong> what's inside each bottle.",
+                  "The player <strong> might know exactly </strong> what's in each bottle, but <strong> might also be unsure. </strong>"],
+        answer: 1,
+        exam: true
+      },
+      {
+        text: `<strong>Question 3/5:</strong> Which of the following is true?`,
+        options: ["The player has <strong> no knowledge </strong> about the contents of each bottle.",
+                  "The player <strong> knows perfectly </strong> what's inside each bottle.",
+                  "The player <strong> might know exactly </strong> what's in each bottle, but <strong> might also be unsure. </strong>"],
+        answer: 1,
+        feedback: true
+      },
+      {
+        text: `<strong>Question 4/5:</strong> Which of the following is true?`,
+        options: ["The map designer placed the bottles logically and helpfully",
+                  "The map designer placed the bottles randomly",
+                  "The bottles are all potions"],
+        answer: 0,
+        exam: true
+      },
+      {
+        text: `<strong>Question 4/5:</strong> Which of the following is true?`,
+        options: ["The map designer placed the bottles logically and helpfully",
+                  "The map designer placed the bottles randomly",
+                  "The bottles are all potions"],
+        answer: 0,
+        feedback: true
+      },
+      {
+        text: `<strong>Question 5/5:</strong> How can you tell what liquid is in the bottle?`,
+        options: ["Guess <strong>either potion or poison</strong> and hope for the best.",
+                  "The liquid type is explicitly stated somewhere on the map",
+                  "Try your best to infer the liquid type knwoing the designer placed them logically"],
+        answer: 2,
+        exam: true
+      },
+      {
+        text: `<strong>Question 5/5:</strong> How can you tell what liquid is in the bottle?`,
+        options: ["Guess <strong>either potion or poison</strong> and hope for the best.",
+                  "The liquid type is explicitly stated somewhere on the map",
+                  "Try your best to infer the liquid type knwoing the designer placed them logically"],
+        answer: 2,
         feedback: true
       },
       {

@@ -383,30 +383,24 @@
 
       <!-- Goal Question -->
       <div ng-show="!hide_questions() && has_goal_question()" id="question" class="captions" ng-cloak>
-        <p><strong>Which gem(s) are most likely to be the player's goal?</strong></p>
+        <p><strong>What liquid is in the bottle?</strong></p>
         <ul class="no-bullets-horizontal">
           <li><input type="checkbox" ng-model="response.goals[0]" ng-change="validate_goal()"
               ng-disabled="disable_questions()" id="goal0">
             <label for="goal0">
-              <img src="images/gem_triangle.png" class="checkboximage"> <span class='checkboxtext'>Triangle</span>
+              <img src="images/sparkles.png" class="checkboximage"> <span class='checkboxtext'>Potion</span>
             </label>
           </li>
           <li><input type="checkbox" ng-model="response.goals[1]" ng-change="validate_goal()"
               ng-disabled="disable_questions()" id="goal1">
             <label for="goal1">
-              <img src="images/gem_square.png" class="checkboximage"> <span class='checkboxtext'>Square</span>
+              <img src="images/skull.png" class="checkboximage"> <span class='checkboxtext'>Poison</span>
             </label>
           </li>
           <li><input type="checkbox" ng-model="response.goals[2]" ng-change="validate_goal()"
               ng-disabled="disable_questions()" id="goal2">
             <label for="goal2">
-              <img src="images/gem_hexagon.png" class="checkboximage"> <span class='checkboxtext'>Hexagon</span>
-            </label>
-          </li>
-          <li><input type="checkbox" ng-model="response.goals[3]" ng-change="validate_goal()"
-              ng-disabled="disable_questions()" id="goal3">
-            <label for="goal3">
-              <img src="images/gem_circle.png" class="checkboximage"> <span class='checkboxtext'>Circle</span>
+              <img src="images/empty.png" class="checkboximage"> <span class='checkboxtext'>Empty</span>
             </label>
           </li>
           <!-- <br>

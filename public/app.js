@@ -627,103 +627,81 @@ experimentApp.controller('ExperimentController',
         text: `You're watching someone play the treasure game shown to the left.
               <br><br>
               The player controls a character <img class="caption-image" src="images/human.png">,
-              and their goal is collect one of the four gems
-              (triangle <img class="caption-image" src="images/gem_triangle.png">,
-               square <img class="caption-image" src="images/gem_square.png">,
-               hexagon <img class="caption-image" src="images/gem_hexagon.png">, or 
-               circle <img class="caption-image" src="images/gem_circle.png">).
+              and their goal is to defeat the a monster <img class="caption-image" src="images/monster.png">.
+              The player is currently too weak to fight the monster and must collect potions <img class="caption-image" src="images/potion.png">
+              to become strong enough to fight the monster. However, there are also poisons <img class="caption-image" src="images/potion.png"> on
+              the map that look identical to the potions. You, the player must  which bottles contain potions and which contain poisons.
+
+              <br><br>
+              <u>Note: The map designer placed the bottles in a helpful and logical manner</u>
+
               <br><br>
               The rules of the game are as follows:
               <br>
               <ul>
               <li> The player can move on the white squares.</li>
               <li> The player has a full view of the map at all time.</li>
-              <li> The player's goal is to collect <strong>exactly one</strong> target gem.</li>
-              <li> Keys unlock doors of the same color
-                (e.g. red keys <img class="caption-image" src="images/key_red.png"> 
-                 unlock red doors <img class="caption-image" src="images/door_red.png">).
+              <li> The player's goal is to collect <strong>only</strong> the potions.</li>
+              <li> Each bottle <img class="caption-image" src="images/potion.png">
+                 contains <strong>either</strong> a <strong>potion or poison</strong>
               </li>
-              <li> Each key can only be used <strong>once</strong>. Keys disappear after use.</li>
-              <li> Each box <img class="caption-image" src="images/box.png">
-                  may be empty <img class="caption-image" src="images/box_empty.png">
-                  or contain exactly one key <img class="caption-image" src="images/box_with_key.png">.
-              </li>
-              <li> The player <strong>may or may not know</strong> what's in each box.</li>
-              <li> Neither you nor the player can see what's hidden in each box. But both of you can see all other objects in the scene.</li>
-              <li> There are at most <strong>two keys</strong> hidden among the boxes.</li>
-              <li> The player knows that the puzzle is solvable, which means there are just enough keys to reach any of the target gems.
+              <li> The player <strong>does not</strong> know what's in each bottle.</li>
               </ul>
-              Your task is to figure out what the player's <strong>goal</strong> is,
-              and also what the player <strong>believes</strong> about the contents of the boxes.<br>
+              Your task is to discern the <strong>location</strong> of the potions to collect and <strong>avoid</strong> the poison,
+              based on them being placed by a rational designer.<br>
               <br>
               Press the <strong>Next</strong> button to continue.
               `,
-        image: "stimuli/segments/demo_1.gif"
+        image: "stimuli/segments/tutorial1.png"
       }, 
       {
         text: `At each step in this game, you will watch the player take several actions.<br>
               <br>
-              We will then ask you one question about the player's <strong>goal</strong>,
-              and another set of questions about the player's <strong>current beliefs</strong>.<br>
+              We will then ask you one question about the <strong>type</strong> of liquid in the bottle.<br>
               <br>
               Press <strong>Next</strong> to watch what happens.
               `,
-        image: "stimuli/segments/demo_1.gif"
+        image: "stimuli/segments/tutorial1.png"
       }, 
       {
-        text: `The player picked up a <span class="key-red">red key</span>. Which gem do you think they're trying to reach?<br>
+        text: `The player is investigating a bottle. What type of liquid do you think is in the bottle?<br>
               <br>
-              If more than one gem seems likely, you can select all likely gems.
-              Remember that some keys might be <i>hidden</i> among the boxes.
               <br>
               <br>
               `,
         tutorial: true,
         show_questions: true,
         question_types: ["goals"],
-        image: "stimuli/segments/demo_2.gif",
-        delay: 2600
-      },
-      {
-        text: `You've answered the question about the player's goal.
-              We will now ask several questions about what the player
-              <strong>currently believes</strong> about the boxes. <br>
-              <br>
-              Press <strong>Next</strong> to continue.
-              `,
-        tutorial: true,
-        image: "stimuli/segments/demo_2.gif"
+        image: "stimuli/segments/tutorial.gif",
+        delay: 2000
       },
       {
         text: `Please read each of the following statements about what the player currently believes, and rate them on a scale from 1 to 7.<br>
               <br>
               Rate <strong>7</strong> if you're <strong>certain</strong> the statement <strong>correctly describes</strong> the player's current beliefs.<br>
               Rate <strong>1</strong> if you're <strong>certain</strong> the statement <strong>does not describe</strong> the player's current beliefs.<br>
-              Rate <strong>4</strong> if you think there's an <strong>even, 50-50 chance</strong> whether the statement is a true or false description of what the player currently believes.<br>
-              <br>
-              Remember that the player just picked up a <span class="key-red">red key</span> and walked towards box 3.
-              `,
+              Rate <strong>4</strong> if you think there's an <strong>even, 50-50 chance</strong> whether the statement is a true or false description of what the player currently believes.`,
         tutorial: true,
         show_questions: true,
         question_types: ["beliefs"],
-        statements: ["The player believes that there might be a blue key in box 3.",
-                     "The player believes that there must be a blue key in box 2."],
-        image: "stimuli/segments/demo_2.gif",
+        statements: ["The player believes that this bottle contains a liquid.",
+                     "The player believes that there must be a potion in this bottle.",
+                     "The player believes that there must be a poison in this bottle."],
+        image: "stimuli/segments/tutorial3.png",
       },
       {
-        image: "stimuli/segments/demo_3.gif",
-        text: `What about now? Do these actions make any goal more likely than the others?
-              And do they indicate what the player might currently think is inside the boxes?
-              `,
+        image: "stimuli/segments/tutorial2.gif",
+        text: `What about this bottle? What is inside of it?`,
         tutorial: true,
         show_questions: true,
         question_types: ["goals", "beliefs"],
-        statements: ["The player believes that there might be a blue key in box 3.",
-                     "The player believes that there must be a blue key in box 2."],
-        delay: 1800
+        statements: ["The player believes that this bottle contains a liquid.",
+                     "The player believes that there must be a potion in this bottle.",
+                     "The player believes that there must be a poison in this bottle."],
+        delay: 3500
       },
       {
-        image: "stimuli/segments/demo_4.gif",
+        image: "stimuli/segments/tutorial3.gif",
         text: `The player opens <strong>box 1</strong> and finds that there is no key inside,
               then takes several steps to the right. How does this change your judgments?
               <br><br>
@@ -745,15 +723,7 @@ experimentApp.controller('ExperimentController',
         show_questions: false,
       },
       {
-        text: `You've now finished the practice round! <br>
-              <br>
-              <strong>Bonus Payment Points</strong>
-              <br><br>
-              As you play, you can earn <strong>bonus payment</strong> by collecting points for the guesses you make.<br>
-              For each round, you get <strong>1/<i>N</i> points</strong> if the human's <i>true</i> goal is one of the <strong><i>N</i></strong> gems you guessed.<br>
-              <br>
-              Your points from all rounds are converted to bonus payment at a rate of <strong>40 points = $1.00.</strong>
-              `
+        text: `You've now finished the practice round!`
       },
       {
         text: `<strong>Comprehension Questions</strong> <br>

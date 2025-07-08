@@ -397,12 +397,6 @@
               <img src="images/skull.png" class="checkboximage"> <span class='checkboxtext'>Poison</span>
             </label>
           </li>
-          <li><input type="checkbox" ng-model="response.goals[2]" ng-change="validate_goal()"
-              ng-disabled="disable_questions()" id="goal2">
-            <label for="goal2">
-              <img src="images/empty.png" class="checkboximage"> <span class='checkboxtext'>Empty</span>
-            </label>
-          </li>
           <!-- <br>
           <li><input type="checkbox" ng-model="response.dontKnow" ng-change="toggle_dontknow()"
               ng-disabled="disable_questions()">
@@ -438,10 +432,9 @@
 
       <!-- Post-Stimulus Feedback -->
       <p ng-show="section == 'stimuli' && part_id < 0" class="feedback" ng-cloak>
-       The player's true goal was the <span ng-bind-html="goal_feedback()"></span> gem.<br>
-       <br>
-       <span ng-bind-html="belief_feedback()"></span>
-       You earned <strong>{{stim_reward.toFixed(2)}}</strong> bonus point(s) this round, for a total of <strong>{{total_reward.toFixed(2)}}</strong> points.<br><br>
+        You have competed the map and all of the <img class="caption-image" src="images/potion.png"> have been investigated!
+        <br><br>
+        Press <strong>Next</strong> to continue to the next map.
       </p>
 
       <!-- Comprehension Questions -->

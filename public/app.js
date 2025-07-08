@@ -435,40 +435,6 @@ experimentApp.controller('ExperimentController',
       "Definitely<br>True",
     ];
 
-    $scope.goal_feedback = function() {
-      if ($scope.stim_id <= 0 || $scope.section != "stimuli") {
-        return "";
-      }
-      let goal_id = $scope.stimuli_set[$scope.stim_id - 1].goal;
-      let goal_str = $scope.possible_goals[goal_id - 1];
-      let styled_goal_str = "<strong>" + goal_str + "</strong> " + "<img class='caption-image' src='" + $scope.goal_images[goal_id - 1] + "'/>";
-      return styled_goal_str
-    };
-
-    $scope.belief_feedback = function() {
-      if ($scope.stim_id <= 0 || $scope.section != "stimuli") {
-        return "";
-      }
-      let key_colors = $scope.stimuli_set[$scope.stim_id - 1].relevant_colors;
-      let key_strs = key_colors.map(function(key_color) {
-        return "<span class='key-" + key_color + "'>" + key_color + " key</span>";
-      });
-      let box_ids = $scope.stimuli_set[$scope.stim_id - 1].relevant_boxes;
-      let box_strs = box_ids.map(function(box_id) {
-        return "<strong>box " + box_id + "</strong>";
-      });
-      let key_box_strs = key_strs.map(function(key_str, i) {
-        return "a " + key_str + " in " + box_strs[i]
-      });
-      if (key_box_strs.length == 0) {
-        return "";
-      } else if (key_box_strs.length == 1) {
-        return "They found " + key_box_strs[0] + ".<br><br>";
-      } else {
-        return "They found " + key_box_strs.slice(0, -1).join(", ") + " and " + key_box_strs.slice(-1) + ".<br><br>";
-      }
-    };
-
     $scope.instruction_has_text = function () {
       return $scope.instructions[$scope.inst_id].text != null
     };
@@ -616,208 +582,204 @@ experimentApp.controller('ExperimentController',
 
     $scope.stimuli_set_length = $scope.stimuli_sets[0].length;
     $scope.instructions = [
-      {
-        text: `Welcome to our guessing game!
-              <br><br>
-              Before you begin your task, you'll complete a brief guided tutorial (~ 2 minutes) to understand the game.
-              <br><br>
-              Press <strong>Next</strong> to continue.`,
-      },
-      {
-        text: `You're watching someone play the treasure game shown to the left.
-              <br><br>
-              The player controls a character <img class="caption-image" src="images/human.png">,
-              and their goal is to defeat the a monster <img class="caption-image" src="images/monster.png">.
-              The player is currently too weak to fight the monster and must collect potions <img class="caption-image" src="images/potion.png">
-              to become strong enough to fight the monster. However, there are also poisons <img class="caption-image" src="images/potion.png"> on
-              the map that look identical to the potions. You, the player must  which bottles contain potions and which contain poisons.
+      // {
+      //   text: `Welcome to our guessing game!
+      //         <br><br>
+      //         Before you begin your task, you'll complete a brief guided tutorial (~ 2 minutes) to understand the game.
+      //         <br><br>
+      //         Press <strong>Next</strong> to continue.`,
+      // },
+      // {
+      //   text: `You're watching someone play the treasure game shown to the left.
+      //         <br><br>
+      //         The player controls a character <img class="caption-image" src="images/human.png">,
+      //         and their goal is to defeat the a monster <img class="caption-image" src="images/monster.png">.
+      //         The player is currently too weak to fight the monster and must collect potions <img class="caption-image" src="images/potion.png">
+      //         to become strong enough to fight the monster. However, there are also poisons <img class="caption-image" src="images/potion.png"> on
+      //         the map that look identical to the potions. You, the player must  which bottles contain potions and which contain poisons.
 
-              <br><br>
-              <u>Note: The map designer placed the bottles in a helpful and logical manner</u>
+      //         <br><br>
+      //         <u>Note: The map designer placed the bottles in a helpful and logical manner</u>
 
-              <br><br>
-              The rules of the game are as follows:
-              <br>
-              <ul>
-              <li> The player can move on the white squares.</li>
-              <li> The player has a full view of the map at all time.</li>
-              <li> The player's goal is to collect <strong>only</strong> the potions.</li>
-              <li> Each bottle <img class="caption-image" src="images/potion.png">
-                 contains <strong>either</strong> a <strong>potion or poison</strong>
-              </li>
-              <li> The player <strong>does not</strong> know what's in each bottle.</li>
-              </ul>
-              Your task is to discern the <strong>location</strong> of the potions to collect and <strong>avoid</strong> the poison,
-              based on them being placed by a rational designer.<br>
-              <br>
-              Press the <strong>Next</strong> button to continue.
-              `,
-        image: "stimuli/segments/tutorial1.png"
-      }, 
-      {
-        text: `At each step in this game, you will watch the player take several actions.<br>
-              <br>
-              We will then ask you one question about the <strong>type</strong> of liquid in the bottle.<br>
-              <br>
-              Press <strong>Next</strong> to watch what happens.
-              `,
-        image: "stimuli/segments/tutorial1.png"
-      }, 
-      {
-        text: `The player is investigating a bottle. What type of liquid do you think is in the bottle?<br>
-              <br>
-              <br>
-              <br>
-              `,
-        tutorial: true,
-        show_questions: true,
-        question_types: ["goals"],
-        image: "stimuli/segments/tutorial.gif",
-        delay: 2000
-      },
-      {
-        text: `Please read each of the following statements about what the player currently believes, and rate them on a scale from 1 to 7.<br>
-              <br>
-              Rate <strong>7</strong> if you're <strong>certain</strong> the statement <strong>correctly describes</strong> the player's current beliefs.<br>
-              Rate <strong>1</strong> if you're <strong>certain</strong> the statement <strong>does not describe</strong> the player's current beliefs.<br>
-              Rate <strong>4</strong> if you think there's an <strong>even, 50-50 chance</strong> whether the statement is a true or false description of what the player currently believes.`,
-        tutorial: true,
-        show_questions: true,
-        question_types: ["beliefs"],
-        statements: ["The player believes that this bottle contains a liquid.",
-                     "The player believes that there must be a potion in this bottle.",
-                     "The player believes that there must be a poison in this bottle."],
-        image: "stimuli/segments/tutorial3.png",
-      },
-      {
-        image: "stimuli/segments/tutorial2.gif",
-        text: `What about this bottle? What is inside of it?`,
-        tutorial: true,
-        show_questions: true,
-        question_types: ["goals", "beliefs"],
-        statements: ["The player believes that this bottle contains a liquid.",
-                     "The player believes that there must be a potion in this bottle.",
-                     "The player believes that there must be a poison in this bottle."],
-        delay: 3500
-      },
-      {
-        image: "stimuli/segments/tutorial3.gif",
-        text: `The player investigates a third bottle. What do you think the contents of the bottle are and how certain are you?`,
-        tutorial: true,
-        show_questions: true,
-        question_types: ["goals", "beliefs"],
-        statements: ["The player believes that this bottle contains a liquid.",
-                     "The player believes that there must be a potion in this bottle.",
-                     "The player believes that there must be a poison in this bottle."],
-        delay: 1500
-      },
-      {
-        image: "stimuli/segments/tutorial4.gif",
-        text: `The player investigates the last bottle. What do you think the contents of the bottle are and how certain are you?`,
-        tutorial: true,
-        show_questions: true,
-        question_types: ["goals", "beliefs"],
-        statements: ["The player believes that this bottle contains a liquid.",
-                     "The player believes that there must be a potion in this bottle.",
-                     "The player believes that there must be a poison in this bottle."],
-        delay: 2000
-      },
-      {
-        text: `You've now finished the practice round and the player can fight the monster using the potions and poisons you've collected!`
-      },
-      {
-        text: `<strong>Comprehension Questions</strong> <br>
-               <br>
-               For the last part of the tutorial, we will ask 5 quick questions to check your understanding of the task.<br>
-               <br>
-               Answer <strong>all questions correctly</strong> in order to proceed to the main experiment.
-               You can retake the quiz as many times as necessary.
-              `
-      },
-      {
-        text: `<strong>Question 1/5:</strong> What is the player investigating?`,
-        options: ["The map",
-                  "The bottles",
-                  "The monster"],
-        answer: 1,
-        exam: true
-      },
-      {
-        text: `<strong>Question 1/5:</strong>  What is the player investigating?`,
-        options: ["The map",
-                  "The bottles",
-                  "The monster"],
-        answer: 1,
-        feedback: true
-      },
-      {
-        text: `<strong>Question 2/5:</strong> What is your task in this game?`,
-        options: ["Run away from the monster",
-                  "Explore the map",
-                  "Guess the identity of the liquid in each bottle"],
-        answer: 2,
-        exam: true
-      },
-      {
-        text: `<strong>Question 2/5:</strong> What is your task in this game?`,
-        options: ["Run away from the monster",
-                  "Explore the map",
-                  "Guess the identity of the liquid in each bottle"],
-        answer: 2,
-        feedback: true
-      },
-      {
-        text: `<strong>Question 3/5:</strong> Which of the following is true?`,
-        options: ["The player has <strong> no definite knowledge </strong> about the contents of each bottle.",
-                  "The player <strong> knows perfectly </strong> what's inside each bottle.",
-                  "The player <strong> might know exactly </strong> what's in each bottle, but <strong> might also be unsure. </strong>"],
-        answer: 1,
-        exam: true
-      },
-      {
-        text: `<strong>Question 3/5:</strong> Which of the following is true?`,
-        options: ["The player has <strong> no knowledge </strong> about the contents of each bottle.",
-                  "The player <strong> knows perfectly </strong> what's inside each bottle.",
-                  "The player <strong> might know exactly </strong> what's in each bottle, but <strong> might also be unsure. </strong>"],
-        answer: 1,
-        feedback: true
-      },
-      {
-        text: `<strong>Question 4/5:</strong> Which of the following is true?`,
-        options: ["The map designer placed the bottles logically and helpfully",
-                  "The map designer placed the bottles randomly",
-                  "The bottles are all potions"],
-        answer: 0,
-        exam: true
-      },
-      {
-        text: `<strong>Question 4/5:</strong> Which of the following is true?`,
-        options: ["The map designer placed the bottles logically and helpfully",
-                  "The map designer placed the bottles randomly",
-                  "The bottles are all potions"],
-        answer: 0,
-        feedback: true
-      },
-      {
-        text: `<strong>Question 5/5:</strong> How can you tell what liquid is in the bottle?`,
-        options: ["Guess <strong>either potion or poison</strong> and hope for the best.",
-                  "The liquid type is explicitly stated somewhere on the map",
-                  "Try your best to infer the liquid type knwoing the designer placed them logically"],
-        answer: 2,
-        exam: true
-      },
-      {
-        text: `<strong>Question 5/5:</strong> How can you tell what liquid is in the bottle?`,
-        options: ["Guess <strong>either potion or poison</strong> and hope for the best.",
-                  "The liquid type is explicitly stated somewhere on the map",
-                  "Try your best to infer the liquid type knwoing the designer placed them logically"],
-        answer: 2,
-        feedback: true
-      },
-      {
-        exam_end: true,
-        exam_start_id: 11
-      },
+      //         <br><br>
+      //         The rules of the game are as follows:
+      //         <br>
+      //         <ul>
+      //         <li> The player can move on the white squares.</li>
+      //         <li> The player has a full view of the map at all time.</li>
+      //         <li> The player's goal is to collect <strong>only</strong> the potions.</li>
+      //         <li> Each bottle <img class="caption-image" src="images/potion.png">
+      //            contains <strong>either</strong> a <strong>potion or poison</strong>
+      //         </li>
+      //         <li> The player <strong>does not</strong> know what's in each bottle.</li>
+      //         </ul>
+      //         Your task is to discern the <strong>location</strong> of the potions to collect and <strong>avoid</strong> the poison,
+      //         based on them being placed by a rational designer.<br>
+      //         <br>
+      //         Press the <strong>Next</strong> button to continue.
+      //         `,
+      //   image: "stimuli/segments/tutorial/tutorial1.png"
+      // }, 
+      // {
+      //   text: `At each step in this game, you will watch the player take several actions.<br>
+      //         <br>
+      //         We will then ask you one question about the <strong>type</strong> of liquid in the bottle.<br>
+      //         <br>
+      //         Press <strong>Next</strong> to watch what happens.
+      //         `,
+      //   image: "stimuli/segments/tutorial/tutorial1.png"
+      // }, 
+      // {
+      //   text: `The player is investigating a bottle. What type of liquid do you think is in the bottle?<br>
+      //         <br>
+      //         <br>
+      //         <br>
+      //         `,
+      //   tutorial: true,
+      //   show_questions: true,
+      //   question_types: ["goals"],
+      //   image: "stimuli/segments/tutorial/tutorial.gif",
+      //   delay: 2000
+      // },
+      // {
+      //   text: `Please read each of the following statements about what the player currently believes, and rate them on a scale from 1 to 7.<br>
+      //         <br>
+      //         Rate <strong>7</strong> if you're <strong>certain</strong> the statement <strong>correctly describes</strong> the player's current beliefs.<br>
+      //         Rate <strong>1</strong> if you're <strong>certain</strong> the statement <strong>does not describe</strong> the player's current beliefs.<br>
+      //         Rate <strong>4</strong> if you think there's an <strong>even, 50-50 chance</strong> whether the statement is a true or false description of what the player currently believes.`,
+      //   tutorial: true,
+      //   show_questions: true,
+      //   question_types: ["beliefs"],
+      //   statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
+      //                "The player believes that there is a <strong>poison</strong> in this bottle."],
+      //   image: "stimuli/segments/tutorial/tutorial3.png",
+      // },
+      // {
+      //   image: "stimuli/segments/tutorial/tutorial2.gif",
+      //   text: `What about this bottle? What is inside of it?`,
+      //   tutorial: true,
+      //   show_questions: true,
+      //   question_types: ["goals", "beliefs"],
+      //   statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
+      //                "The player believes that there is a <strong>poison</strong> in this bottle."],
+      //   delay: 3500
+      // },
+      // {
+      //   image: "stimuli/segments/tutorial/tutorial3.gif",
+      //   text: `The player investigates a third bottle. What do you think the contents of the bottle are and how certain are you?`,
+      //   tutorial: true,
+      //   show_questions: true,
+      //   question_types: ["goals", "beliefs"],
+      //   statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
+      //                "The player believes that there is a <strong>poison</strong> in this bottle."],
+      //   delay: 1500
+      // },
+      // {
+      //   image: "stimuli/segments/tutorial/tutorial4.gif",
+      //   text: `The player investigates the last bottle. What do you think the contents of the bottle are and how certain are you?`,
+      //   tutorial: true,
+      //   show_questions: true,
+      //   question_types: ["goals", "beliefs"],
+      //   statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
+      //                "The player believes that there is a <strong>poison</strong> in this bottle."],
+      //   delay: 2000
+      // },
+      // {
+      //   text: `You've now finished the practice round and the player can fight the monster using the potions and poisons you've collected!`
+      // },
+      // {
+      //   text: `<strong>Comprehension Questions</strong> <br>
+      //          <br>
+      //          For the last part of the tutorial, we will ask 5 quick questions to check your understanding of the task.<br>
+      //          <br>
+      //          Answer <strong>all questions correctly</strong> in order to proceed to the main experiment.
+      //          You can retake the quiz as many times as necessary.
+      //         `
+      // },
+      // {
+      //   text: `<strong>Question 1/5:</strong> What is the player investigating?`,
+      //   options: ["The map",
+      //             "The bottles",
+      //             "The monster"],
+      //   answer: 1,
+      //   exam: true
+      // },
+      // {
+      //   text: `<strong>Question 1/5:</strong>  What is the player investigating?`,
+      //   options: ["The map",
+      //             "The bottles",
+      //             "The monster"],
+      //   answer: 1,
+      //   feedback: true
+      // },
+      // {
+      //   text: `<strong>Question 2/5:</strong> What is your task in this game?`,
+      //   options: ["Run away from the monster",
+      //             "Explore the map",
+      //             "Guess the identity of the liquid in each bottle"],
+      //   answer: 2,
+      //   exam: true
+      // },
+      // {
+      //   text: `<strong>Question 2/5:</strong> What is your task in this game?`,
+      //   options: ["Run away from the monster",
+      //             "Explore the map",
+      //             "Guess the identity of the liquid in each bottle"],
+      //   answer: 2,
+      //   feedback: true
+      // },
+      // {
+      //   text: `<strong>Question 3/5:</strong> Which of the following is true?`,
+      //   options: ["The player has <strong> no definite knowledge </strong> about the contents of each bottle.",
+      //             "The player <strong> knows perfectly </strong> what's inside each bottle.",
+      //             "The player <strong> might know exactly </strong> what's in each bottle, but <strong> might also be unsure. </strong>"],
+      //   answer: 0,
+      //   exam: true
+      // },
+      // {
+      //   text: `<strong>Question 3/5:</strong> Which of the following is true?`,
+      //   options: ["The player has <strong> no definite knowledge </strong> about the contents of each bottle.",
+      //             "The player <strong> knows perfectly </strong> what's inside each bottle.",
+      //             "The player <strong> might know exactly </strong> what's in each bottle, but <strong> might also be unsure. </strong>"],
+      //   answer: 0,
+      //   feedback: true
+      // },
+      // {
+      //   text: `<strong>Question 4/5:</strong> Which of the following is true?`,
+      //   options: ["The map designer placed the bottles logically and helpfully.",
+      //             "The map designer placed the bottles randomly.",
+      //             "The bottles are all potions."],
+      //   answer: 0,
+      //   exam: true
+      // },
+      // {
+      //   text: `<strong>Question 4/5:</strong> Which of the following is true?`,
+      //   options: ["The map designer placed the bottles logically and helpfully.",
+      //             "The map designer placed the bottles randomly.",
+      //             "The bottles are all potions."],
+      //   answer: 0,
+      //   feedback: true
+      // },
+      // {
+      //   text: `<strong>Question 5/5:</strong> How can you tell what liquid is in the bottle?`,
+      //   options: ["Guess <strong>either potion or poison</strong> and hope for the best",
+      //             "The liquid type is explicitly stated somewhere on the map",
+      //             "Try your best to infer the liquid type knwoing the designer placed them logically"],
+      //   answer: 2,
+      //   exam: true
+      // },
+      // {
+      //   text: `<strong>Question 5/5:</strong> How can you tell what liquid is in the bottle?`,
+      //   options: ["Guess <strong>either potion or poison</strong> and hope for the best",
+      //             "The liquid type is explicitly stated somewhere on the map",
+      //             "Try your best to infer the liquid type knwoing the designer placed them logically"],
+      //   answer: 2,
+      //   feedback: true
+      // },
+      // {
+      //   exam_end: true,
+      //   exam_start_id: 11
+      // },
       {
         text: `Congratulations! You've finished the tutorial.
                <br><br>
@@ -839,89 +801,43 @@ experimentApp.controller('ExperimentController',
 
     $scope.stimuli = [
       {
-        "name": "1_1",
+        "name": "1_3",
         "goal": 2,
         "images": [
-          "stimuli/segments/p1_1_1.gif",
-          "stimuli/segments/p1_1_2.gif",
-          "stimuli/segments/p1_1_3.gif",
-          "stimuli/segments/p1_1_4.gif",
-          "stimuli/segments/p1_1_5.gif"
+          "stimuli/segments/M1L1P2.png",
+          "stimuli/segments/M1L1P2_1.gif",
+          "stimuli/segments/M1L1P2_2.gif",
         ],
         "times": [
           1,
           6,
-          9,
-          15,
-          27
+          15
         ],
-        "statements": ["The player believes the blue key is in box 1.",
- "The player is sure there must be a blue key in box 3.",
- "The player believes that box 1 or 2 contain the blue key, but leans more towards box 1.",
- "The player thinks that box 1 is empty.",
- "The player believes that box 1 contains the blue key."],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
         "relevant_colors": [
           "blue"
         ],
         "relevant_boxes": [
           1
         ],
-        "length": 4
-      },
-      {
-        "name": "1_2",
-        "goal": 2,
-        "images": [
-          "stimuli/segments/p1_2_1.gif",
-          "stimuli/segments/p1_2_2.gif",
-          "stimuli/segments/p1_2_3.gif",
-          "stimuli/segments/p1_2_4.gif",
-          "stimuli/segments/p1_2_5.gif",
-          "stimuli/segments/p1_2_6.gif"
-        ],
-        "times": [
-          1,
-          4,
-          6,
-          10,
-          14,
-          30
-        ],
-        "statements": ["The player is sure there must be a blue key in box 3.",
- "The player knows that boxes 1 and 2 did not have the blue key.",
- "The player believes that the blue key is in box number 3.",
- "The player believes that box 3 is more likely to contain a red key than box 1.",
- "The player believes that box 3 is empty."],
-
-        "relevant_colors": [
-          "blue"
-        ],
-        "relevant_boxes": [
-          3
-        ],
-        "length": 5
+        "length": 3
       },
       {
         "name": "1_3",
         "goal": 2,
         "images": [
-          "stimuli/segments/p1_3_1.gif",
-          "stimuli/segments/p1_3_2.gif",
-          "stimuli/segments/p1_3_3.gif",
-          "stimuli/segments/p1_3_4.gif"
+          "stimuli/segments/M1L1P2.png",
+          "stimuli/segments/M1L1P2_1.gif",
+          "stimuli/segments/M1L1P2_2.gif",
         ],
         "times": [
           1,
-          7,
-          11,
-          23
+          6,
+          15
         ],
-        "statements": ["The player thinks that box 1 is empty.",
- "The player is uncertain about the contents of box 3.",
- "The player believes that box 2 is empty.",
- "The player believes that if box 1 does not have a blue key, then box 3 has a blue key.",
- "The player believes there may be a key in box 1."],
-
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
         "relevant_colors": [
           "blue"
         ],
@@ -931,87 +847,22 @@ experimentApp.controller('ExperimentController',
         "length": 3
       },
       {
-        "name": "2_1",
-        "goal": 3,
+        "name": "1_3",
+        "goal": 2,
         "images": [
-          "stimuli/segments/p2_1_1.gif",
-          "stimuli/segments/p2_1_2.gif",
-          "stimuli/segments/p2_1_3.gif",
-          "stimuli/segments/p2_1_4.gif",
-          "stimuli/segments/p2_1_5.gif"
+          "stimuli/segments/M1L1P2.png",
+          "stimuli/segments/M1L1P2_1.gif",
+          "stimuli/segments/M1L1P2_2.gif",
         ],
         "times": [
           1,
-          4,
-          10,
-          17,
-          32
-        ],
-        "statements": ["The player knows that box 1 does not have the blue key.",
- "The player believes if the red key is not in box 2 then it must be in box 3.",
- "The player believes that box 2 has a key.",
- "The player believes box 2 might hold a red key.",
- "The player knows that box 2 is empty."],
-        "relevant_colors": [
-          "red"
-        ],
-        "relevant_boxes": [
-          2
-        ],
-        "length": 4
-      },
-      {
-        "name": "2_2",
-        "goal": 1,
-        "images": [
-          "stimuli/segments/p2_2_1.gif",
-          "stimuli/segments/p2_2_2.gif",
-          "stimuli/segments/p2_2_3.gif",
-          "stimuli/segments/p2_2_4.gif",
-          "stimuli/segments/p2_2_5.gif"
-        ],
-        "times": [
-          1,
-          4,
           6,
-          11,
-          25
+          15
         ],
-        "statements": ["The player thinks that box 1 is empty.",
- "The player believes that box 3 is empty.",
- "The player thinks that box 1 is empty.",
- "The player believes that box 3 may contain a red key.",
- "The player believes that box 3 is more likely to contain a red key than box 1."],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
         "relevant_colors": [
-          "red"
-        ],
-        "relevant_boxes": [
-          3
-        ],
-        "length": 4
-      },
-      {
-        "name": "2_3",
-        "goal": 3,
-        "images": [
-          "stimuli/segments/p2_3_1.gif",
-          "stimuli/segments/p2_3_2.gif",
-          "stimuli/segments/p2_3_3.gif",
-          "stimuli/segments/p2_3_4.gif"
-        ],
-        "times": [
-          1,
-          4,
-          10,
-          25
-        ],
-        "statements": ["The player believes that box 2 may contain the red key.",
- "The player believes that box 2 is empty.",
- "The player thinks that boxes 2 and 3 might or might not contain a red key.",
- "The player believes the red key is in box 2.",
- "The player thinks that there's more likely to be a red key in box 1 or 3 than box 2."],
-        "relevant_colors": [
-          "red"
+          "blue"
         ],
         "relevant_boxes": [
           1
@@ -1019,412 +870,165 @@ experimentApp.controller('ExperimentController',
         "length": 3
       },
       {
-        "name": "3_1",
-        "goal": 3,
-        "images": [
-          "stimuli/segments/p3_1_1.gif",
-          "stimuli/segments/p3_1_2.gif",
-          "stimuli/segments/p3_1_3.gif",
-          "stimuli/segments/p3_1_4.gif",
-          "stimuli/segments/p3_1_5.gif",
-          "stimuli/segments/p3_1_6.gif"
-        ],
-        "times": [
-          1,
-          5,
-          9,
-          12,
-          20,
-          46
-        ],
-        "statements": ["The player believes box 2 is least likely to hold the blue key.",
- "The player believes that box 3 holds the blue key.",
- "The player knows box 3 contains a blue key.",
- "The player thinks that box 1 is empty.",
- "The player knows that box 2 is empty."],
-        "relevant_colors": [
-          "blue"
-        ],
-        "relevant_boxes": [
-          3
-        ],
-        "length": 5
-      },
-      {
-        "name": "3_2",
-        "goal": 4,
-        "images": [
-          "stimuli/segments/p3_2_1.gif",
-          "stimuli/segments/p3_2_2.gif",
-          "stimuli/segments/p3_2_3.gif",
-          "stimuli/segments/p3_2_4.gif"
-        ],
-        "times": [
-          1,
-          14,
-          22,
-          47
-        ],
-        "statements": ["The player believes that box 2 may contain the red key.",
- "The player believes the red key is in box 2.",
- "The player does not know which box contains a red key.",
- "The player believes that box 3 may contain a red key.",
- "The player believes that box 1 might have a red key."],
-        "relevant_colors": [
-          "red"
-        ],
-        "relevant_boxes": [
-          2
-        ],
-        "length": 3
-      },
-      {
-        "name": "3_3",
-        "goal": 3,
-        "images": [
-          "stimuli/segments/p3_3_1.gif",
-          "stimuli/segments/p3_3_2.gif",
-          "stimuli/segments/p3_3_3.gif",
-          "stimuli/segments/p3_3_4.gif"
-        ],
-        "times": [
-          1,
-          9,
-          15,
-          43
-        ],
-        "statements": ["The player knows that box 1 does not have the blue key.",
- "The player thinks that box 1 is empty.",
- "The player is unsure whether the blue key is in box 3 or 1.",
- "The player believes that box 3 will either be empty or have a blue key.",
- "The player believes the red key is in box 2."],
-        "relevant_colors": [
-          "blue"
-        ],
-        "relevant_boxes": [
-          3
-        ],
-        "length": 3
-      },
-      {
-        "name": "4_1",
-        "goal": 3,
-        "images": [
-          "stimuli/segments/p4_1_1.gif",
-          "stimuli/segments/p4_1_2.gif",
-          "stimuli/segments/p4_1_3.gif",
-          "stimuli/segments/p4_1_4.gif"
-        ],
-        "times": [
-          1,
-          11,
-          20,
-          35
-        ],
-        "statements": ["The player believes box 1 is more likely to contain a red key than box 2.",
- "The player believes that box 3 may contain a red key.",
- "The player thinks that there's more likely to be a red key in box 2 or 3 than box 1.",
- "The player believes that either box 2 or 3 contains a red key.",
- "The player believes box 1 does not hold a red key."],
-        "relevant_colors": [
-          "red"
-        ],
-        "relevant_boxes": [
-          2
-        ],
-        "length": 3
-      },
-      {
-        "name": "4_2",
-        "goal": 3,
-        "images": [
-          "stimuli/segments/p4_2_1.gif",
-          "stimuli/segments/p4_2_2.gif",
-          "stimuli/segments/p4_2_3.gif",
-          "stimuli/segments/p4_2_4.gif",
-          "stimuli/segments/p4_2_5.gif"
-        ],
-        "times": [
-          1,
-          7,
-          13,
-          23,
-          35
-        ],
-        "statements": ["The player believes that box 3 may contain a red key.",
- "The player knows that box 2 is empty.",
- "The player is sure that box 1 and 2 are empty.",
- "The player believes that box 2 may contain a red key.",
- "The player thinks that box 1 is empty."],
-        "relevant_colors": [
-          "red",
-          "red"
-        ],
-        "relevant_boxes": [
-          1,
-          3
-        ],
-        "length": 4
-      },
-      {
-        "name": "4_3",
-        "goal": 3,
-        "images": [
-          "stimuli/segments/p4_3_1.gif",
-          "stimuli/segments/p4_3_2.gif",
-          "stimuli/segments/p4_3_3.gif",
-          "stimuli/segments/p4_3_4.gif",
-          "stimuli/segments/p4_3_5.gif",
-          "stimuli/segments/p4_3_6.gif"
-        ],
-        "times": [
-          1,
-          11,
-          20,
-          23,
-          27,
-          40
-        ],
-        "statements": ["The player believes that box 2 may contain a red key.",
- "The player is unsure which box has a key.",
- "The player believes that box 3 may contain a red key.",
- "The player believes that the red key must be in box 3.",
- "The player believes there might be a key in box 2."],
-        "relevant_colors": [
-          "red"
-        ],
-        "relevant_boxes": [
-          2
-        ],
-        "length": 5
-      },
-      {
-        "name": "5_1",
+        "name": "1_3",
         "goal": 2,
         "images": [
-          "stimuli/segments/p5_1_1.gif",
-          "stimuli/segments/p5_1_2.gif",
-          "stimuli/segments/p5_1_3.gif",
-          "stimuli/segments/p5_1_4.gif"
+          "stimuli/segments/M1L1P2.png",
+          "stimuli/segments/M1L1P2_1.gif",
+          "stimuli/segments/M1L1P2_2.gif",
         ],
         "times": [
           1,
           6,
-          13,
-          34
+          15
         ],
-        "statements": ["The player believes that box 3 might have a red key.",
- "The player believes that there is a red key in box 2.",
- "The player believes that box 1 is empty.",
- "The player believes that either box 2 or 3 has a red key.",
- "The player believes that the red key must be in box 3."],
-        "relevant_colors": [
-          "red"
-        ],
-        "relevant_boxes": [
-          3
-        ],
-        "length": 3
-      },
-      {
-        "name": "5_2",
-        "goal": 2,
-        "images": [
-          "stimuli/segments/p5_2_1.gif",
-          "stimuli/segments/p5_2_2.gif",
-          "stimuli/segments/p5_2_3.gif",
-          "stimuli/segments/p5_2_4.gif",
-          "stimuli/segments/p5_2_5.gif",
-        ],
-        "times": [
-          1,
-          6,
-          21,
-          28,
-          49
-        ],
-        "statements": ["The player believes that box 2 may contain a red key.",
- "The player believes that box 3 is empty.",
- "The player knows that the boxes 1 and 2 were both empty.",
- "The player believes that the red key must be in box 3.",
- "The player is uncertain about the contents of box 3."],
-        "relevant_colors": [
-          "red"
-        ],
-        "relevant_boxes": [
-          3
-        ],
-        "length": 4
-      },
-      {
-        "name": "6_1",
-        "goal": 3,
-        "images": [
-          "stimuli/segments/p6_1_1.gif",
-          "stimuli/segments/p6_1_2.gif",
-          "stimuli/segments/p6_1_3.gif"
-        ],
-        "times": [
-          1,
-          9,
-          29
-        ],
-        "statements": ["The player believes that box 2 probably has a key.",
- "The player knows that box 2 is empty.",
- "The player knows that there is a blue or red key in box 1.",
- "The player believes that either a red key or a blue key is in box 2.",
- "The player believes that box 1 might hold a blue key."],
-        "relevant_colors": [
-          "red",
-          "blue"
-        ],
-        "relevant_boxes": [
-          1,
-          2
-        ],
-        "length": 2
-      },
-      {
-        "name": "6_2",
-        "goal": 3,
-        "images": [
-          "stimuli/segments/p6_2_1.gif",
-          "stimuli/segments/p6_2_2.gif",
-          "stimuli/segments/p6_2_3.gif",
-          "stimuli/segments/p6_2_4.gif"
-        ],
-        "times": [
-          1,
-          16,
-          19,
-          33
-        ],
-        "statements": ["The player believes that box number 2 holds the red key.",
- "The player believes that box 2 holds a blue key.",
- "The player believes the blue key is in box 1.",
- "The player believes that there is a red key in box 2.",
- "The player believes there might be a key in Box 1 or Box 2."],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
         "relevant_colors": [
           "blue"
-        ],
-        "relevant_boxes": [
-          2
-        ],
-        "length": 3
-      },
-      {
-        "name": "6_3",
-        "goal": 3,
-        "images": [
-          "stimuli/segments/p6_3_1.gif",
-          "stimuli/segments/p6_3_2.gif",
-          "stimuli/segments/p6_3_3.gif",
-          "stimuli/segments/p6_3_4.gif"
-        ],
-        "times": [
-          1,
-          5,
-          14,
-          37
-        ],
-        "statements": ["The player believes that the boxes are both empty.",
- "The player believes that box 1 might have a red key.",
- "The player believes the red key is in box 2.",
- "The player believes that box 1 is empty.",
- "The player believes there might be a key in box 1 or box 2."],
-        "relevant_colors": [
-        ],
-        "relevant_boxes": [
-        ],
-        "length": 3
-      },
-      {
-        "name": "7_1",
-        "goal": 2,
-        "images": [
-          "stimuli/segments/p7_1_1.gif",
-          "stimuli/segments/p7_1_2.gif",
-          "stimuli/segments/p7_1_3.gif",
-          "stimuli/segments/p7_1_4.gif",
-          "stimuli/segments/p7_1_5.gif"
-        ],
-        "times": [
-          1,
-          7,
-          10,
-          28,
-          43
-        ],
-        "statements": ["The player believes there might be a red key in box 3.",
- "The player knows that box 2 is empty.",
- "The player knows that box 3 is empty.",
- "The player believes that there is a red key in box 2.",
- "The player believes that box 1 might have a red key."],
-        "relevant_colors": [
-          "red"
         ],
         "relevant_boxes": [
           1
         ],
-        "length": 4
+        "length": 3
       },
       {
-        "name": "7_2",
+        "name": "1_3",
         "goal": 2,
         "images": [
-          "stimuli/segments/p7_2_1.gif",
-          "stimuli/segments/p7_2_2.gif",
-          "stimuli/segments/p7_2_3.gif",
-          "stimuli/segments/p7_2_4.gif",
+          "stimuli/segments/M1L1P2.png",
+          "stimuli/segments/M1L1P2_1.gif",
+          "stimuli/segments/M1L1P2_2.gif",
         ],
         "times": [
           1,
-          12,
-          32,
-          55
+          6,
+          15
         ],
-        "statements": ["The player knows that box 1 does not have the red key.",
- "The player believes that box number 2 holds the red key.",
- "The player believes that box 1 might have a red key.",
- "The player believes there might be a key in box 2.",
- "The player believes that box 2 is more likely to contain a red key than box 3."],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
         "relevant_colors": [
-          "red"
+          "blue"
         ],
         "relevant_boxes": [
-          3
+          1
         ],
         "length": 3
       },
       {
-        "name": "7_3",
+        "name": "1_3",
         "goal": 2,
         "images": [
-          "stimuli/segments/p7_3_1.gif",
-          "stimuli/segments/p7_3_2.gif",
-          "stimuli/segments/p7_3_3.gif",
-          "stimuli/segments/p7_3_4.gif",
-          "stimuli/segments/p7_3_5.gif"
+          "stimuli/segments/M1L1P2.png",
+          "stimuli/segments/M1L1P2_1.gif",
+          "stimuli/segments/M1L1P2_2.gif",
         ],
         "times": [
           1,
-          13,
-          26,
-          32,
-          52
+          6,
+          15
         ],
-        "statements": ["The player believes there might be a red key in box 3.",
- "The player believes that box 1 is empty.",
- "The player believes that box 2 would have a red key if box 3 is empty.",
- "The player believes there might be a key in box 2.",
- "The player knows that box 1 does not have the red key."],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
         "relevant_colors": [
-          "red"
+          "blue"
         ],
         "relevant_boxes": [
-          3
+          1
         ],
-        "length": 4
+        "length": 3
+      },
+      {
+        "name": "1_3",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M1L1P2.png",
+          "stimuli/segments/M1L1P2_1.gif",
+          "stimuli/segments/M1L1P2_2.gif",
+        ],
+        "times": [
+          1,
+          6,
+          15
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "relevant_colors": [
+          "blue"
+        ],
+        "relevant_boxes": [
+          1
+        ],
+        "length": 3
+      },
+      {
+        "name": "1_3",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M1L1P2.png",
+          "stimuli/segments/M1L1P2_1.gif",
+          "stimuli/segments/M1L1P2_2.gif",
+        ],
+        "times": [
+          1,
+          6,
+          15
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "relevant_colors": [
+          "blue"
+        ],
+        "relevant_boxes": [
+          1
+        ],
+        "length": 3
+      },
+      {
+        "name": "1_3",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M1L1P2.png",
+          "stimuli/segments/M1L1P2_1.gif",
+          "stimuli/segments/M1L1P2_2.gif",
+        ],
+        "times": [
+          1,
+          6,
+          15
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "relevant_colors": [
+          "blue"
+        ],
+        "relevant_boxes": [
+          1
+        ],
+        "length": 3
+      },
+      {
+        "name": "1_3",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M1L1P2.png",
+          "stimuli/segments/M1L1P2_1.gif",
+          "stimuli/segments/M1L1P2_2.gif",
+        ],
+        "times": [
+          1,
+          6,
+          15
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "relevant_colors": [
+          "blue"
+        ],
+        "relevant_boxes": [
+          1
+        ],
+        "length": 3
       }
     ]
   }

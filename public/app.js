@@ -568,16 +568,7 @@ experimentApp.controller('ExperimentController',
     };
 
     $scope.stimuli_sets = [
-      [12, 1, 14, 16, 20, 3, 11, 17, 13, 19],
-      [9, 6, 8, 5, 15, 4, 18, 2, 7, 10],
-      [12, 10, 20, 1, 18, 5, 9, 17, 13, 6],
-      [4, 14, 11, 3, 19, 15, 8, 2, 7, 16],
-      [6, 14, 4, 8, 12, 3, 15, 17, 13, 9],
-      [18, 16, 7, 5, 1, 20, 10, 2, 11, 19],
-      [16, 14, 8, 11, 17, 3, 9, 1, 18, 13],
-      [2, 15, 12, 7, 10, 6, 19, 4, 20, 5],
-      [11, 15, 3, 14, 2, 5, 7, 20, 9, 17],
-      [19, 8, 4, 12, 6, 10, 18, 13, 1, 16]
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
     ]
 
     $scope.stimuli_set_length = $scope.stimuli_sets[0].length;
@@ -801,7 +792,24 @@ experimentApp.controller('ExperimentController',
 
     $scope.stimuli = [
       {
-        "name": "1_3",
+        "name": "1_1",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M1L1P1.png",
+          "stimuli/segments/M1L1P1_1.gif",
+          "stimuli/segments/M1L1P1_2.gif",
+        ],
+        "times": [
+          1,
+          6,
+          25
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 3
+      },
+{
+        "name": "1_2",
         "goal": 2,
         "images": [
           "stimuli/segments/M1L1P2.png",
@@ -815,219 +823,458 @@ experimentApp.controller('ExperimentController',
         ],
         "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
-        "relevant_colors": [
-          "blue"
+        "length": 3
+      },
+{
+        "name": "1_3",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M1L2P1.png",
+          "stimuli/segments/M1L2P1_1.gif",
+          "stimuli/segments/M1L2P1_2.gif",
+          "stimuli/segments/M1L2P1_3.gif"
         ],
-        "relevant_boxes": [
-          1
+        "times": [
+          1,
+          6,
+          15,
+          25
         ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 4
+      },
+{
+        "name": "1_4",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M1L2P2.png",
+          "stimuli/segments/M1L2P2_1.gif",
+          "stimuli/segments/M1L2P2_2.gif"
+        ],
+        "times": [
+          1,
+          6,
+          15
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 3
+      },
+{
+        "name": "2_1",
+        "goal": 2,
+        "images": [
+            "stimuli/segments/M2L1P1.png",
+          "stimuli/segments/M2L1P1_1.gif",
+          "stimuli/segments/M2L1P1_2.gif",
+          "stimuli/segments/M2L1P1_3.gif",
+        ],
+        "times": [
+          1,
+          6,
+          20,
+          30
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 4
+      },
+{
+        "name": "2_2",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M2L1P2.png",
+          "stimuli/segments/M2L1P2_1.gif",
+          "stimuli/segments/M2L1P2_2.gif",
+        ],
+        "times": [
+          1,
+          15,
+          25
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
         "length": 3
       },
       {
-        "name": "1_3",
+        "name": "2_3",
         "goal": 2,
         "images": [
-          "stimuli/segments/M1L1P2.png",
-          "stimuli/segments/M1L1P2_1.gif",
-          "stimuli/segments/M1L1P2_2.gif",
+          "stimuli/segments/M2L1P3.png",
+          "stimuli/segments/M2L1P3_1.gif",
+          "stimuli/segments/M2L1P3_2.gif",
         ],
         "times": [
           1,
           6,
-          15
+          20
         ],
         "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
-        "relevant_colors": [
-          "blue"
-        ],
-        "relevant_boxes": [
-          1
-        ],
         "length": 3
       },
       {
-        "name": "1_3",
+        "name": "2_4",
         "goal": 2,
         "images": [
-          "stimuli/segments/M1L1P2.png",
-          "stimuli/segments/M1L1P2_1.gif",
-          "stimuli/segments/M1L1P2_2.gif",
+          "stimuli/segments/M2L2P1.png",
+          "stimuli/segments/M2L2P1_1.gif",
+          "stimuli/segments/M2L2P1_2.gif",
+          "stimuli/segments/M2L2P1_3.gif",
+          "stimuli/segments/M2L2P1_4.gif"
         ],
         "times": [
           1,
           6,
+          15,
+          20,
+          33
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 5
+      },
+      {
+        "name": "2_5",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M2L2P2.png",
+          "stimuli/segments/M2L2P2_1.gif",
+          "stimuli/segments/M2L2P2_2.gif"
+        ],
+        "times": [
+          1,
+          10,
           15
         ],
         "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
-        "relevant_colors": [
-          "blue"
-        ],
-        "relevant_boxes": [
-          1
-        ],
         "length": 3
       },
       {
-        "name": "1_3",
+        "name": "2_6",
         "goal": 2,
         "images": [
-          "stimuli/segments/M1L1P2.png",
-          "stimuli/segments/M1L1P2_1.gif",
-          "stimuli/segments/M1L1P2_2.gif",
+          "stimuli/segments/M2L2P3.png",
+          "stimuli/segments/M2L2P3_1.gif",
+          "stimuli/segments/M2L2P3_2.gif"
         ],
         "times": [
           1,
           6,
-          15
+          28
         ],
         "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
-        "relevant_colors": [
-          "blue"
-        ],
-        "relevant_boxes": [
-          1
-        ],
         "length": 3
       },
       {
-        "name": "1_3",
+        "name": "3_1",
         "goal": 2,
         "images": [
-          "stimuli/segments/M1L1P2.png",
-          "stimuli/segments/M1L1P2_1.gif",
-          "stimuli/segments/M1L1P2_2.gif",
+          "stimuli/segments/M3L1P1.png",
+          "stimuli/segments/M3L1P1_1.gif",
+          "stimuli/segments/M3L1P1_2.gif"
         ],
         "times": [
           1,
-          6,
+          10,
+          27
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 3
+      },
+{
+        "name": "3_2",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M3L1P2.png",
+          "stimuli/segments/M3L1P2_1.gif"
+        ],
+        "times": [
+          1,
           15
         ],
         "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
-        "relevant_colors": [
-          "blue"
+        "length": 2
+      },
+      {
+        "name": "3_3",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M3L1P3.png",
+          "stimuli/segments/M3L1P3_1.gif"
         ],
-        "relevant_boxes": [
-          1
+        "times": [
+          1,
+          10
         ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 2
+      },
+      {
+        "name": "3_4",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M3L2P1.png",
+          "stimuli/segments/M3L2P1_1.gif",
+          "stimuli/segments/M3L2P1_2.gif",
+          "stimuli/segments/M3L2P1_3.gif"
+        ],
+        "times": [
+          1,
+          10,
+          27,
+          35
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 4
+      },
+      {
+        "name": "3_5",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M3L2P2.png",
+          "stimuli/segments/M3L2P2_1.gif",
+          "stimuli/segments/M3L2P2_2.gif"
+        ],
+        "times": [
+          1,
+          8,
+          15
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
         "length": 3
       },
       {
-        "name": "1_3",
+        "name": "3_6",
         "goal": 2,
         "images": [
-          "stimuli/segments/M1L1P2.png",
-          "stimuli/segments/M1L1P2_1.gif",
-          "stimuli/segments/M1L1P2_2.gif",
+          "stimuli/segments/M3L2P3.png",
+          "stimuli/segments/M3L2P3_1.gif",
+          "stimuli/segments/M3L2P3_2.gif"
         ],
         "times": [
           1,
-          6,
-          15
+          10,
+          27
         ],
         "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
-        "relevant_colors": [
-          "blue"
-        ],
-        "relevant_boxes": [
-          1
-        ],
         "length": 3
       },
       {
-        "name": "1_3",
+        "name": "4_1",
         "goal": 2,
         "images": [
-          "stimuli/segments/M1L1P2.png",
-          "stimuli/segments/M1L1P2_1.gif",
-          "stimuli/segments/M1L1P2_2.gif",
+          "stimuli/segments/M4L1P1.png",
+          "stimuli/segments/M4L1P1_1.gif",
+          "stimuli/segments/M4L1P1_2.gif",
+          "stimuli/segments/M4L1P1_3.gif",
         ],
         "times": [
           1,
-          6,
-          15
+          10,
+          33,
+          60
         ],
         "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
-        "relevant_colors": [
-          "blue"
+        "length": 4
+      },
+      {
+        "name": "4_2",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M4L1P2.png",
+          "stimuli/segments/M4L1P2_1.gif",
+          "stimuli/segments/M4L1P2_2.gif"
         ],
-        "relevant_boxes": [
-          1
+        "times": [
+          1,
+          10,
+          33,
         ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
         "length": 3
       },
       {
-        "name": "1_3",
+        "name": "4_3",
         "goal": 2,
         "images": [
-          "stimuli/segments/M1L1P2.png",
-          "stimuli/segments/M1L1P2_1.gif",
-          "stimuli/segments/M1L1P2_2.gif",
+          "stimuli/segments/M4L1P3.png",
+          "stimuli/segments/M4L1P3_1.gif",
+          "stimuli/segments/M4L1P3_2.gif"
         ],
         "times": [
           1,
-          6,
-          15
+          10,
+          33,
         ],
         "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
-        "relevant_colors": [
-          "blue"
-        ],
-        "relevant_boxes": [
-          1
-        ],
         "length": 3
       },
       {
-        "name": "1_3",
+        "name":"4_4",
         "goal": 2,
         "images": [
-          "stimuli/segments/M1L1P2.png",
-          "stimuli/segments/M1L1P2_1.gif",
-          "stimuli/segments/M1L1P2_2.gif",
+          "stimuli/segments/M4L2P1.png",
+          "stimuli/segments/M4L2P1_1.gif",
+          "stimuli/segments/M4L2P1_2.gif"
         ],
         "times": [
           1,
-          6,
-          15
+          10,
+          33,
         ],
         "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
-        "relevant_colors": [
-          "blue"
-        ],
-        "relevant_boxes": [
-          1
-        ],
         "length": 3
       },
       {
-        "name": "1_3",
+        "name": "4_4",
         "goal": 2,
         "images": [
-          "stimuli/segments/M1L1P2.png",
-          "stimuli/segments/M1L1P2_1.gif",
-          "stimuli/segments/M1L1P2_2.gif",
+          "stimuli/segments/M4L2P2.png",
+          "stimuli/segments/M4L2P2_1.gif"
         ],
         "times": [
           1,
-          6,
-          15
+          33
         ],
         "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
-        "relevant_colors": [
-          "blue"
+        "length": 2
+      },
+      {
+        "name": "4_5",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M4L2P3.png",
+          "stimuli/segments/M4L2P3_1.gif"
         ],
-        "relevant_boxes": [
-          1
+        "times": [
+          1,
+          10
         ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 2
+      },
+      {
+        "name": "5_1",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M5L1P1.png",
+          "stimuli/segments/M5L1P1_1.gif",
+          "stimuli/segments/M5L1P1_2.gif",
+          "stimuli/segments/M5L1P1_3.gif"
+        ],
+        "times": [
+          1,
+          15,
+          38,
+          50
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 4
+      },
+      {
+        "name": "5_2",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M5L1P2.png",
+          "stimuli/segments/M5L1P2_1.gif",
+          "stimuli/segments/M5L1P2_2.gif",
+        ],
+        "times": [
+          1,
+          15,
+          50,
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 3
+      },
+      {
+        "name": "5_3",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M5L1P3.png",
+          "stimuli/segments/M5L1P3_1.gif",
+          "stimuli/segments/M5L1P3_2.gif",
+        ],
+        "times": [
+          1,
+          15,
+          38
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 3
+      },
+      {
+        "name": "5_4",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M5L2P1.png",
+          "stimuli/segments/M5L2P1_1.gif",
+          "stimuli/segments/M5L2P1_2.gif",
+          "stimuli/segments/M5L2P1_3.gif",
+          "stimuli/segments/M5L2P1_4.gif"
+        ],
+        "times": [
+          1,
+          15,
+          29,
+          36,
+          50
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 6
+      },
+      {
+        "name": "5_5",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M5L2P2.png",
+          "stimuli/segments/M5L2P2_1.gif",
+          "stimuli/segments/M5L2P2_2.gif",
+        ],
+        "times": [
+          1,
+          15,
+          50
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
+        "length": 3
+      },
+      {
+        "name": "5_6",
+        "goal": 2,
+        "images": [
+          "stimuli/segments/M5L2P3.png",
+          "stimuli/segments/M5L2P3_1.gif",
+          "stimuli/segments/M5L2P3_2.gif",
+        ],
+        "times": [
+          1,
+          24,
+          45
+        ],
+        "statements": ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                       "The player believes that there is a <strong>poison</strong> in this bottle."],
         "length": 3
       }
     ]

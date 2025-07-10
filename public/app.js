@@ -568,209 +568,209 @@ experimentApp.controller('ExperimentController',
     };
 
     $scope.stimuli_sets = [
-      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28] //TODO: make different groupings
     ]
 
     $scope.stimuli_set_length = $scope.stimuli_sets[0].length;
     $scope.instructions = [
-      // {
-      //   text: `Welcome to our guessing game!
-      //         <br><br>
-      //         Before you begin your task, you'll complete a brief guided tutorial (~ 2 minutes) to understand the game.
-      //         <br><br>
-      //         Press <strong>Next</strong> to continue.`,
-      // },
-      // {
-      //   text: `You're watching someone play the treasure game shown to the left.
-      //         <br><br>
-      //         The player controls a character <img class="caption-image" src="images/human.png">,
-      //         and their goal is to defeat the a monster <img class="caption-image" src="images/monster.png">.
-      //         The player is currently too weak to fight the monster and must collect potions <img class="caption-image" src="images/potion.png">
-      //         to become strong enough to fight the monster. However, there are also poisons <img class="caption-image" src="images/potion.png"> on
-      //         the map that look identical to the potions. You, the player must  which bottles contain potions and which contain poisons.
+      {
+        text: `Welcome to our guessing game!
+              <br><br>
+              Before you begin your task, you'll complete a brief guided tutorial (~ 2 minutes) to understand the game.
+              <br><br>
+              Press <strong>Next</strong> to continue.`,
+      },
+      {
+        text: `You're watching someone play the treasure game shown to the left.
+              <br><br>
+              The player controls a character <img class="caption-image" src="images/human.png">,
+              and their goal is to defeat the a monster <img class="caption-image" src="images/monster.png">.
+              The player is currently too weak to fight the monster and must collect potions <img class="caption-image" src="images/potion.png">
+              to become strong enough to fight the monster. However, there are also poisons <img class="caption-image" src="images/potion.png"> on
+              the map that look identical to the potions. You, the player must  which bottles contain potions and which contain poisons.
 
-      //         <br><br>
-      //         <u>Note: The map designer placed the bottles in a helpful and logical manner</u>
+              <br><br>
+              <u>Note: The map designer placed the bottles in a helpful and logical manner</u>
 
-      //         <br><br>
-      //         The rules of the game are as follows:
-      //         <br>
-      //         <ul>
-      //         <li> The player can move on the white squares.</li>
-      //         <li> The player has a full view of the map at all time.</li>
-      //         <li> The player's goal is to collect <strong>only</strong> the potions.</li>
-      //         <li> Each bottle <img class="caption-image" src="images/potion.png">
-      //            contains <strong>either</strong> a <strong>potion or poison</strong>
-      //         </li>
-      //         <li> The player <strong>does not</strong> know what's in each bottle.</li>
-      //         </ul>
-      //         Your task is to discern the <strong>location</strong> of the potions to collect and <strong>avoid</strong> the poison,
-      //         based on them being placed by a rational designer.<br>
-      //         <br>
-      //         Press the <strong>Next</strong> button to continue.
-      //         `,
-      //   image: "stimuli/segments/tutorial/tutorial1.png"
-      // }, 
-      // {
-      //   text: `At each step in this game, you will watch the player take several actions.<br>
-      //         <br>
-      //         We will then ask you one question about the <strong>type</strong> of liquid in the bottle.<br>
-      //         <br>
-      //         Press <strong>Next</strong> to watch what happens.
-      //         `,
-      //   image: "stimuli/segments/tutorial/tutorial1.png"
-      // }, 
-      // {
-      //   text: `The player is investigating a bottle. What type of liquid do you think is in the bottle?<br>
-      //         <br>
-      //         <br>
-      //         <br>
-      //         `,
-      //   tutorial: true,
-      //   show_questions: true,
-      //   question_types: ["goals"],
-      //   image: "stimuli/segments/tutorial/tutorial.gif",
-      //   delay: 2000
-      // },
-      // {
-      //   text: `Please read each of the following statements about what the player currently believes, and rate them on a scale from 1 to 7.<br>
-      //         <br>
-      //         Rate <strong>7</strong> if you're <strong>certain</strong> the statement <strong>correctly describes</strong> the player's current beliefs.<br>
-      //         Rate <strong>1</strong> if you're <strong>certain</strong> the statement <strong>does not describe</strong> the player's current beliefs.<br>
-      //         Rate <strong>4</strong> if you think there's an <strong>even, 50-50 chance</strong> whether the statement is a true or false description of what the player currently believes.`,
-      //   tutorial: true,
-      //   show_questions: true,
-      //   question_types: ["beliefs"],
-      //   statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
-      //                "The player believes that there is a <strong>poison</strong> in this bottle."],
-      //   image: "stimuli/segments/tutorial/tutorial3.png",
-      // },
-      // {
-      //   image: "stimuli/segments/tutorial/tutorial2.gif",
-      //   text: `What about this bottle? What is inside of it?`,
-      //   tutorial: true,
-      //   show_questions: true,
-      //   question_types: ["goals", "beliefs"],
-      //   statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
-      //                "The player believes that there is a <strong>poison</strong> in this bottle."],
-      //   delay: 3500
-      // },
-      // {
-      //   image: "stimuli/segments/tutorial/tutorial3.gif",
-      //   text: `The player investigates a third bottle. What do you think the contents of the bottle are and how certain are you?`,
-      //   tutorial: true,
-      //   show_questions: true,
-      //   question_types: ["goals", "beliefs"],
-      //   statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
-      //                "The player believes that there is a <strong>poison</strong> in this bottle."],
-      //   delay: 1500
-      // },
-      // {
-      //   image: "stimuli/segments/tutorial/tutorial4.gif",
-      //   text: `The player investigates the last bottle. What do you think the contents of the bottle are and how certain are you?`,
-      //   tutorial: true,
-      //   show_questions: true,
-      //   question_types: ["goals", "beliefs"],
-      //   statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
-      //                "The player believes that there is a <strong>poison</strong> in this bottle."],
-      //   delay: 2000
-      // },
-      // {
-      //   text: `You've now finished the practice round and the player can fight the monster using the potions and poisons you've collected!`
-      // },
-      // {
-      //   text: `<strong>Comprehension Questions</strong> <br>
-      //          <br>
-      //          For the last part of the tutorial, we will ask 5 quick questions to check your understanding of the task.<br>
-      //          <br>
-      //          Answer <strong>all questions correctly</strong> in order to proceed to the main experiment.
-      //          You can retake the quiz as many times as necessary.
-      //         `
-      // },
-      // {
-      //   text: `<strong>Question 1/5:</strong> What is the player investigating?`,
-      //   options: ["The map",
-      //             "The bottles",
-      //             "The monster"],
-      //   answer: 1,
-      //   exam: true
-      // },
-      // {
-      //   text: `<strong>Question 1/5:</strong>  What is the player investigating?`,
-      //   options: ["The map",
-      //             "The bottles",
-      //             "The monster"],
-      //   answer: 1,
-      //   feedback: true
-      // },
-      // {
-      //   text: `<strong>Question 2/5:</strong> What is your task in this game?`,
-      //   options: ["Run away from the monster",
-      //             "Explore the map",
-      //             "Guess the identity of the liquid in each bottle"],
-      //   answer: 2,
-      //   exam: true
-      // },
-      // {
-      //   text: `<strong>Question 2/5:</strong> What is your task in this game?`,
-      //   options: ["Run away from the monster",
-      //             "Explore the map",
-      //             "Guess the identity of the liquid in each bottle"],
-      //   answer: 2,
-      //   feedback: true
-      // },
-      // {
-      //   text: `<strong>Question 3/5:</strong> Which of the following is true?`,
-      //   options: ["The player has <strong> no definite knowledge </strong> about the contents of each bottle.",
-      //             "The player <strong> knows perfectly </strong> what's inside each bottle.",
-      //             "The player <strong> might know exactly </strong> what's in each bottle, but <strong> might also be unsure. </strong>"],
-      //   answer: 0,
-      //   exam: true
-      // },
-      // {
-      //   text: `<strong>Question 3/5:</strong> Which of the following is true?`,
-      //   options: ["The player has <strong> no definite knowledge </strong> about the contents of each bottle.",
-      //             "The player <strong> knows perfectly </strong> what's inside each bottle.",
-      //             "The player <strong> might know exactly </strong> what's in each bottle, but <strong> might also be unsure. </strong>"],
-      //   answer: 0,
-      //   feedback: true
-      // },
-      // {
-      //   text: `<strong>Question 4/5:</strong> Which of the following is true?`,
-      //   options: ["The map designer placed the bottles logically and helpfully.",
-      //             "The map designer placed the bottles randomly.",
-      //             "The bottles are all potions."],
-      //   answer: 0,
-      //   exam: true
-      // },
-      // {
-      //   text: `<strong>Question 4/5:</strong> Which of the following is true?`,
-      //   options: ["The map designer placed the bottles logically and helpfully.",
-      //             "The map designer placed the bottles randomly.",
-      //             "The bottles are all potions."],
-      //   answer: 0,
-      //   feedback: true
-      // },
-      // {
-      //   text: `<strong>Question 5/5:</strong> How can you tell what liquid is in the bottle?`,
-      //   options: ["Guess <strong>either potion or poison</strong> and hope for the best",
-      //             "The liquid type is explicitly stated somewhere on the map",
-      //             "Try your best to infer the liquid type knwoing the designer placed them logically"],
-      //   answer: 2,
-      //   exam: true
-      // },
-      // {
-      //   text: `<strong>Question 5/5:</strong> How can you tell what liquid is in the bottle?`,
-      //   options: ["Guess <strong>either potion or poison</strong> and hope for the best",
-      //             "The liquid type is explicitly stated somewhere on the map",
-      //             "Try your best to infer the liquid type knwoing the designer placed them logically"],
-      //   answer: 2,
-      //   feedback: true
-      // },
-      // {
-      //   exam_end: true,
-      //   exam_start_id: 11
-      // },
+              <br><br>
+              The rules of the game are as follows:
+              <br>
+              <ul>
+              <li> The player can move on the white squares.</li>
+              <li> The player has a full view of the map at all time.</li>
+              <li> The player's goal is to collect <strong>only</strong> the potions.</li>
+              <li> Each bottle <img class="caption-image" src="images/potion.png">
+                 contains <strong>either</strong> a <strong>potion or poison</strong>
+              </li>
+              <li> The player <strong>does not</strong> know what's in each bottle.</li>
+              </ul>
+              Your task is to discern the <strong>location</strong> of the potions to collect and <strong>avoid</strong> the poison,
+              based on them being placed by a rational designer.<br>
+              <br>
+              Press the <strong>Next</strong> button to continue.
+              `,
+        image: "stimuli/segments/tutorial/tutorial1.png"
+      }, 
+      {
+        text: `At each step in this game, you will watch the player take several actions.<br>
+              <br>
+              We will then ask you one question about the <strong>type</strong> of liquid in the bottle.<br>
+              <br>
+              Press <strong>Next</strong> to watch what happens.
+              `,
+        image: "stimuli/segments/tutorial/tutorial1.png"
+      }, 
+      {
+        text: `The player is investigating a bottle. What type of liquid do you think is in the bottle?<br>
+              <br>
+              <br>
+              <br>
+              `,
+        tutorial: true,
+        show_questions: true,
+        question_types: ["goals"],
+        image: "stimuli/segments/tutorial/tutorial.gif",
+        delay: 2000
+      },
+      {
+        text: `Please read each of the following statements about what the player currently believes, and rate them on a scale from 1 to 7.<br>
+              <br>
+              Rate <strong>7</strong> if you're <strong>certain</strong> the statement <strong>correctly describes</strong> the player's current beliefs.<br>
+              Rate <strong>1</strong> if you're <strong>certain</strong> the statement <strong>does not describe</strong> the player's current beliefs.<br>
+              Rate <strong>4</strong> if you think there's an <strong>even, 50-50 chance</strong> whether the statement is a true or false description of what the player currently believes.`,
+        tutorial: true,
+        show_questions: true,
+        question_types: ["beliefs"],
+        statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                     "The player believes that there is a <strong>poison</strong> in this bottle."],
+        image: "stimuli/segments/tutorial/tutorial3.png",
+      },
+      {
+        image: "stimuli/segments/tutorial/tutorial2.gif",
+        text: `What about this bottle? What is inside of it?`,
+        tutorial: true,
+        show_questions: true,
+        question_types: ["goals", "beliefs"],
+        statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                     "The player believes that there is a <strong>poison</strong> in this bottle."],
+        delay: 3500
+      },
+      {
+        image: "stimuli/segments/tutorial/tutorial3.gif",
+        text: `The player investigates a third bottle. What do you think the contents of the bottle are and how certain are you?`,
+        tutorial: true,
+        show_questions: true,
+        question_types: ["goals", "beliefs"],
+        statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                     "The player believes that there is a <strong>poison</strong> in this bottle."],
+        delay: 1500
+      },
+      {
+        image: "stimuli/segments/tutorial/tutorial4.gif",
+        text: `The player investigates the last bottle. What do you think the contents of the bottle are and how certain are you?`,
+        tutorial: true,
+        show_questions: true,
+        question_types: ["goals", "beliefs"],
+        statements: ["The player believes that there is a <strong>potion</strong> in this bottle.",
+                     "The player believes that there is a <strong>poison</strong> in this bottle."],
+        delay: 2000
+      },
+      {
+        text: `You've now finished the practice round and the player can fight the monster using the potions and poisons you've collected!`
+      },
+      {
+        text: `<strong>Comprehension Questions</strong> <br>
+               <br>
+               For the last part of the tutorial, we will ask 5 quick questions to check your understanding of the task.<br>
+               <br>
+               Answer <strong>all questions correctly</strong> in order to proceed to the main experiment.
+               You can retake the quiz as many times as necessary.
+              `
+      },
+      {
+        text: `<strong>Question 1/5:</strong> What is the player investigating?`,
+        options: ["The map",
+                  "The bottles",
+                  "The monster"],
+        answer: 1,
+        exam: true
+      },
+      {
+        text: `<strong>Question 1/5:</strong>  What is the player investigating?`,
+        options: ["The map",
+                  "The bottles",
+                  "The monster"],
+        answer: 1,
+        feedback: true
+      },
+      {
+        text: `<strong>Question 2/5:</strong> What is your task in this game?`,
+        options: ["Run away from the monster",
+                  "Explore the map",
+                  "Guess the identity of the liquid in each bottle"],
+        answer: 2,
+        exam: true
+      },
+      {
+        text: `<strong>Question 2/5:</strong> What is your task in this game?`,
+        options: ["Run away from the monster",
+                  "Explore the map",
+                  "Guess the identity of the liquid in each bottle"],
+        answer: 2,
+        feedback: true
+      },
+      {
+        text: `<strong>Question 3/5:</strong> Which of the following is true?`,
+        options: ["The player has <strong> no definite knowledge </strong> about the contents of each bottle.",
+                  "The player <strong> knows perfectly </strong> what's inside each bottle.",
+                  "The player <strong> might know exactly </strong> what's in each bottle, but <strong> might also be unsure. </strong>"],
+        answer: 0,
+        exam: true
+      },
+      {
+        text: `<strong>Question 3/5:</strong> Which of the following is true?`,
+        options: ["The player has <strong> no definite knowledge </strong> about the contents of each bottle.",
+                  "The player <strong> knows perfectly </strong> what's inside each bottle.",
+                  "The player <strong> might know exactly </strong> what's in each bottle, but <strong> might also be unsure. </strong>"],
+        answer: 0,
+        feedback: true
+      },
+      {
+        text: `<strong>Question 4/5:</strong> Which of the following is true?`,
+        options: ["The map designer placed the bottles logically and helpfully.",
+                  "The map designer placed the bottles randomly.",
+                  "The bottles are all potions."],
+        answer: 0,
+        exam: true
+      },
+      {
+        text: `<strong>Question 4/5:</strong> Which of the following is true?`,
+        options: ["The map designer placed the bottles logically and helpfully.",
+                  "The map designer placed the bottles randomly.",
+                  "The bottles are all potions."],
+        answer: 0,
+        feedback: true
+      },
+      {
+        text: `<strong>Question 5/5:</strong> How can you tell what liquid is in the bottle?`,
+        options: ["Guess <strong>either potion or poison</strong> and hope for the best",
+                  "The liquid type is explicitly stated somewhere on the map",
+                  "Try your best to infer the liquid type knwoing the designer placed them logically"],
+        answer: 2,
+        exam: true
+      },
+      {
+        text: `<strong>Question 5/5:</strong> How can you tell what liquid is in the bottle?`,
+        options: ["Guess <strong>either potion or poison</strong> and hope for the best",
+                  "The liquid type is explicitly stated somewhere on the map",
+                  "Try your best to infer the liquid type knwoing the designer placed them logically"],
+        answer: 2,
+        feedback: true
+      },
+      {
+        exam_end: true,
+        exam_start_id: 11
+      },
       {
         text: `Congratulations! You've finished the tutorial.
                <br><br>
@@ -793,7 +793,6 @@ experimentApp.controller('ExperimentController',
     $scope.stimuli = [
       {
         "name": "1_1",
-        "goal": 2,
         "images": [
           "stimuli/segments/M1L1P1.png",
           "stimuli/segments/M1L1P1_1.gif",
@@ -810,7 +809,6 @@ experimentApp.controller('ExperimentController',
       },
 {
         "name": "1_2",
-        "goal": 2,
         "images": [
           "stimuli/segments/M1L1P2.png",
           "stimuli/segments/M1L1P2_1.gif",
@@ -827,7 +825,6 @@ experimentApp.controller('ExperimentController',
       },
 {
         "name": "1_3",
-        "goal": 2,
         "images": [
           "stimuli/segments/M1L2P1.png",
           "stimuli/segments/M1L2P1_1.gif",
@@ -844,9 +841,8 @@ experimentApp.controller('ExperimentController',
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
         "length": 4
       },
-{
+      {
         "name": "1_4",
-        "goal": 2,
         "images": [
           "stimuli/segments/M1L2P2.png",
           "stimuli/segments/M1L2P2_1.gif",
@@ -861,9 +857,8 @@ experimentApp.controller('ExperimentController',
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
         "length": 3
       },
-{
+      {
         "name": "2_1",
-        "goal": 2,
         "images": [
             "stimuli/segments/M2L1P1.png",
           "stimuli/segments/M2L1P1_1.gif",
@@ -880,9 +875,8 @@ experimentApp.controller('ExperimentController',
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
         "length": 4
       },
-{
+      {
         "name": "2_2",
-        "goal": 2,
         "images": [
           "stimuli/segments/M2L1P2.png",
           "stimuli/segments/M2L1P2_1.gif",
@@ -899,7 +893,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "2_3",
-        "goal": 2,
         "images": [
           "stimuli/segments/M2L1P3.png",
           "stimuli/segments/M2L1P3_1.gif",
@@ -916,7 +909,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "2_4",
-        "goal": 2,
         "images": [
           "stimuli/segments/M2L2P1.png",
           "stimuli/segments/M2L2P1_1.gif",
@@ -937,7 +929,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "2_5",
-        "goal": 2,
         "images": [
           "stimuli/segments/M2L2P2.png",
           "stimuli/segments/M2L2P2_1.gif",
@@ -954,7 +945,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "2_6",
-        "goal": 2,
         "images": [
           "stimuli/segments/M2L2P3.png",
           "stimuli/segments/M2L2P3_1.gif",
@@ -971,7 +961,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "3_1",
-        "goal": 2,
         "images": [
           "stimuli/segments/M3L1P1.png",
           "stimuli/segments/M3L1P1_1.gif",
@@ -986,9 +975,8 @@ experimentApp.controller('ExperimentController',
                        "The player believes that there is a <strong>poison</strong> in this bottle."],
         "length": 3
       },
-{
+      {
         "name": "3_2",
-        "goal": 2,
         "images": [
           "stimuli/segments/M3L1P2.png",
           "stimuli/segments/M3L1P2_1.gif"
@@ -1003,7 +991,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "3_3",
-        "goal": 2,
         "images": [
           "stimuli/segments/M3L1P3.png",
           "stimuli/segments/M3L1P3_1.gif"
@@ -1018,7 +1005,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "3_4",
-        "goal": 2,
         "images": [
           "stimuli/segments/M3L2P1.png",
           "stimuli/segments/M3L2P1_1.gif",
@@ -1037,7 +1023,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "3_5",
-        "goal": 2,
         "images": [
           "stimuli/segments/M3L2P2.png",
           "stimuli/segments/M3L2P2_1.gif",
@@ -1054,7 +1039,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "3_6",
-        "goal": 2,
         "images": [
           "stimuli/segments/M3L2P3.png",
           "stimuli/segments/M3L2P3_1.gif",
@@ -1071,7 +1055,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "4_1",
-        "goal": 2,
         "images": [
           "stimuli/segments/M4L1P1.png",
           "stimuli/segments/M4L1P1_1.gif",
@@ -1090,7 +1073,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "4_2",
-        "goal": 2,
         "images": [
           "stimuli/segments/M4L1P2.png",
           "stimuli/segments/M4L1P2_1.gif",
@@ -1107,7 +1089,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "4_3",
-        "goal": 2,
         "images": [
           "stimuli/segments/M4L1P3.png",
           "stimuli/segments/M4L1P3_1.gif",
@@ -1124,7 +1105,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name":"4_4",
-        "goal": 2,
         "images": [
           "stimuli/segments/M4L2P1.png",
           "stimuli/segments/M4L2P1_1.gif",
@@ -1141,7 +1121,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "4_4",
-        "goal": 2,
         "images": [
           "stimuli/segments/M4L2P2.png",
           "stimuli/segments/M4L2P2_1.gif"
@@ -1156,7 +1135,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "4_5",
-        "goal": 2,
         "images": [
           "stimuli/segments/M4L2P3.png",
           "stimuli/segments/M4L2P3_1.gif"
@@ -1171,7 +1149,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "5_1",
-        "goal": 2,
         "images": [
           "stimuli/segments/M5L1P1.png",
           "stimuli/segments/M5L1P1_1.gif",
@@ -1190,7 +1167,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "5_2",
-        "goal": 2,
         "images": [
           "stimuli/segments/M5L1P2.png",
           "stimuli/segments/M5L1P2_1.gif",
@@ -1207,7 +1183,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "5_3",
-        "goal": 2,
         "images": [
           "stimuli/segments/M5L1P3.png",
           "stimuli/segments/M5L1P3_1.gif",
@@ -1224,7 +1199,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "5_4",
-        "goal": 2,
         "images": [
           "stimuli/segments/M5L2P1.png",
           "stimuli/segments/M5L2P1_1.gif",
@@ -1245,7 +1219,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "5_5",
-        "goal": 2,
         "images": [
           "stimuli/segments/M5L2P2.png",
           "stimuli/segments/M5L2P2_1.gif",
@@ -1262,7 +1235,6 @@ experimentApp.controller('ExperimentController',
       },
       {
         "name": "5_6",
-        "goal": 2,
         "images": [
           "stimuli/segments/M5L2P3.png",
           "stimuli/segments/M5L2P3_1.gif",

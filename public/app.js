@@ -49,10 +49,6 @@ experimentApp.controller('ExperimentController',
     $scope.belief_statement_counts = [];
     $scope.n_displayed_statements = 2;
 
-    $scope.stim_reward = 0;
-    $scope.total_reward = 0;
-    $scope.total_payment = 0;
-
     $scope.ratings = [];
 
     $scope.replaying = false;
@@ -228,13 +224,10 @@ experimentApp.controller('ExperimentController',
     $scope.advance_instructions = async function () {
       if ($scope.inst_id == $scope.instructions.length - 1) {
         // Initialize stimuli section
-        $scope.stim_reward = 0;
         $scope.section = "stimuli";
         $scope.stim_id = 0;
         $scope.part_id = 0;
         $scope.ratings = [];
-        $scope.stim_reward = 0;
-        $scope.total_reward = 0;
         $scope.true_goal = $scope.stimuli_set[$scope.stim_id].goal;
         $scope.anim_complete = true;
         await $scope.set_belief_statements($scope.stim_id);
@@ -300,19 +293,10 @@ experimentApp.controller('ExperimentController',
       if ($scope.stim_id == $scope.stimuli_set.length) {
         // Advance to endscreen
         $scope.section = "endscreen"
-        if ($scope.total_reward > 0) {
-          $scope.total_payment = ($scope.total_reward / 20).toFixed(2)
-        } else {
-          $scope.total_payment = 0.0
-        }
-        $scope.total_reward = $scope.total_reward.toFixed(1)
-        $scope.store_to_db($scope.user_id + "/total_reward", $scope.total_reward);
-        $scope.store_to_db($scope.user_id + "/total_payment", $scope.total_payment);
       }  else if ($scope.part_id < 0) {
         // Advance to first part
         $scope.part_id = $scope.part_id + 1;
         $scope.ratings = [];
-        $scope.stim_reward = 0;
         $scope.true_goal = $scope.stimuli_set[$scope.stim_id].goal;
         await $scope.set_belief_statements($scope.stim_id);
         $scope.anim_complete = true;
@@ -322,18 +306,12 @@ experimentApp.controller('ExperimentController',
         if ($scope.part_id > 0) {
           var step_ratings = $scope.compute_ratings($scope.response);
           $scope.ratings.push(step_ratings);
-          $scope.stim_reward = $scope.stim_reward + step_ratings.reward;
           $scope.log(step_ratings);
-          $scope.log("Step reward: " + step_ratings.reward);
         }
         $scope.part_id = $scope.part_id + 1;
         if ($scope.part_id == $scope.stimuli_set[$scope.stim_id].length) {
           // Store ratings
-          $scope.total_reward += $scope.stim_reward;
           $scope.store_to_db($scope.user_id + "/" + $scope.stimuli_set[$scope.stim_id].name, $scope.ratings);
-          $scope.store_to_db($scope.user_id + "/" + $scope.stimuli_set[$scope.stim_id].name + "/reward", $scope.stim_reward);
-          $scope.log("Stimulus reward: " + $scope.stim_reward);
-          $scope.log("Total reward: " + $scope.total_reward);
           // Advance to next problem.
           $scope.part_id = -1;
           $scope.stim_id = $scope.stim_id + 1;
@@ -381,9 +359,6 @@ experimentApp.controller('ExperimentController',
         (x) => x > 0 ? (x-min_rating)/(max_rating-min_rating) : x
       );
 
-      // Set reward to true goal probs multiplied by 10
-      let reward = true_goal_probs;
-
       rating = {
         "timestep": cur_stim.times[$scope.part_id],
         "time_spent": ((new Date()).getTime() - start_time) / 1000.,
@@ -392,38 +367,9 @@ experimentApp.controller('ExperimentController',
         "statement_ratings": statement_ratings,
         "statement_probs": statement_probs,
         "statement_ids": response.belief_ids.map(v => v+1),
-        "reward": reward
       }
       return rating;
     };
-
-    $scope.goal_images = [
-      "images/gem_triangle.png",
-      "images/gem_square.png",
-      "images/gem_hexagon.png",
-      "images/gem_circle.png"
-    ];
-    $scope.possible_goals = ["triangle", "square", "hexagon", "circle"];
-
-    $scope.style_statement = function(stmt) {
-      stmt = stmt.replaceAll("red key", "<span class='key-red'>red key</span>");
-      stmt = stmt.replaceAll(" red ", " <span class='key-red'>red</span> ");
-      stmt = stmt.replaceAll("blue key", "<span class='key-blue'>blue key</span>");
-      stmt = stmt.replaceAll(" blue ", " <span class='key-blue'>blue</span> ");
-      stmt = stmt.replaceAll("no key", "<span class='key-none'>no key</span>");
-      stmt = stmt.replaceAll(" not ", " <span class='key-none'>not</span> ");
-      stmt = stmt.replaceAll(" could ", " <span class='modal'>could</span> ");
-      stmt = stmt.replaceAll(" must ", " <span class='modal'>must</span> ");
-      stmt = stmt.replaceAll(" might ", " <span class='modal'>might</span> ");
-      stmt = stmt.replaceAll(" likely ", " <span class='modal'>likely</span> ");
-      stmt = stmt.replaceAll(" unlikely ", " <span class='modal'>unlikely</span> ");
-      stmt = stmt.replaceAll(" sure ", " <span class='modal'>sure</span> ");
-      stmt = stmt.replaceAll(" unsure ", " <span class='modal'>unsure</span> ");
-      stmt = stmt.replaceAll(" certain ", " <span class='modal'>certain</span> ");
-      stmt = stmt.replaceAll(" uncertain ", " <span class='modal'>uncertain</span> ");
-      stmt = stmt.replaceAll(/(box \d)/g, "<strong>$1</strong>");
-      return stmt
-    }
 
     $scope.rating_text = [
       "Definitely<br>False",

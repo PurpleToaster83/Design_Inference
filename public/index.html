@@ -167,7 +167,7 @@
       <div ng-show="!hide_questions() && has_belief_question()" id="question" class="captions" ng-cloak>
         <p><strong>Please rate the following statements about the agent's <span class="underline">current beliefs</span>:</strong></p>
         <ul class="no-bullets" ng-repeat="stmt in belief_statements track by $index">
-            <span class="statement"><strong>Statement:</strong> <span ng-bind-html="style_statement(stmt)"></span></span>
+            <span class="statement"><strong>Statement:</strong> <span ng-bind-html="style_statement(stmt)"></span></span> <!--TODO: statements not showing-->
             <div class="rating-scale">
               <!-- Definitely False -->
               <div class="rating-button" ng-repeat="n in [1, 2, 3, 4, 5, 6, 7]">
